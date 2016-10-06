@@ -20758,6 +20758,8 @@ module.exports = require('./lib/React');
 },{"./lib/React":54}],172:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Navbar = require('./navbar');
+var Timer = require('./timer');
 
 var Main = React.createClass({
   displayName: 'Main',
@@ -20766,59 +20768,11 @@ var Main = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(
-        'nav',
-        { className: 'navbar navbar-default navbar-static-top' },
-        React.createElement(
-          'div',
-          { className: 'container' },
-          React.createElement(
-            'div',
-            { className: 'navbar-header' },
-            React.createElement(
-              'a',
-              { href: '/', className: 'navbar-brand' },
-              React.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
-              ' Pomodoro'
-            ),
-            React.createElement(
-              'p',
-              { className: 'navbar-text' },
-              'Manage your time'
-            )
-          ),
-          React.createElement(
-            'ul',
-            { className: 'nav navbar-nav navbar-right' },
-            React.createElement(
-              'li',
-              null,
-              React.createElement(
-                'a',
-                { href: '/about.html' },
-                'About'
-              )
-            ),
-            React.createElement(
-              'li',
-              null,
-              React.createElement(
-                'a',
-                { href: '/myPage.html' },
-                'My Page'
-              )
-            )
-          )
-        )
-      ),
+      React.createElement(Navbar, null),
       React.createElement(
         'div',
         { className: 'container' },
-        React.createElement(
-          'h1',
-          null,
-          'Hello, React!'
-        )
+        React.createElement(Timer, null)
       )
     );
   }
@@ -20826,4 +20780,82 @@ var Main = React.createClass({
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('main'));
 
-},{"react":171,"react-dom":28}]},{},[172]);
+},{"./navbar":173,"./timer":174,"react":171,"react-dom":28}],173:[function(require,module,exports){
+var React = require('react');
+
+var Navbar = React.createClass({
+  displayName: "Navbar",
+
+  render: function () {
+    return React.createElement(
+      "nav",
+      { className: "navbar navbar-default navbar-static-top" },
+      React.createElement(
+        "div",
+        { className: "container" },
+        React.createElement(
+          "div",
+          { className: "navbar-header" },
+          React.createElement(
+            "a",
+            { href: "/", className: "navbar-brand" },
+            React.createElement("i", { className: "fa fa-clock-o", "aria-hidden": "true" }),
+            " Pomodoro"
+          ),
+          React.createElement(
+            "p",
+            { className: "navbar-text" },
+            "Manage your time"
+          )
+        ),
+        React.createElement(
+          "ul",
+          { className: "nav navbar-nav navbar-right" },
+          React.createElement(
+            "li",
+            null,
+            React.createElement(
+              "a",
+              { href: "/about.html" },
+              "About"
+            )
+          ),
+          React.createElement(
+            "li",
+            null,
+            React.createElement(
+              "a",
+              { href: "/myPage.html" },
+              "My Page"
+            )
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = Navbar;
+
+},{"react":171}],174:[function(require,module,exports){
+var React = require('react');
+
+var Timer = React.createClass({
+  displayName: 'Timer',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'h1',
+        null,
+        'Timer'
+      )
+    );
+  }
+});
+
+module.exports = Timer;
+
+},{"react":171}]},{},[172]);
