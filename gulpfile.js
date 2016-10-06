@@ -3,9 +3,14 @@ var babelify = require('babelify');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 
-gulp.task('default', ['browserify']);
+gulp.task('default', ['watch'], function() {
+});
 
-gulp.task('browserify', function() {
+gulp.task('watch', ['build'], function() {
+  gulp.watch('./src/*.js', ['build']);
+});
+
+gulp.task('build', function() {
   console.log('Gulp! Browserify!!');
   return browserify('./src/main.js')
     .transform(babelify, {presets: "react"})

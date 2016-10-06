@@ -8,7 +8,7 @@ var Main = React.createClass({
         <nav className="navbar navbar-default navbar-static-top">
           <div className="container">
             <div className="navbar-header">
-              <a href="/" className="navbar-brand">Pomodoro</a>
+              <a href="/" className="navbar-brand"><i className="fa fa-clock-o" aria-hidden="true"></i> Pomodoro</a>
               <p className="navbar-text">Manage your time</p>
             </div>
             <ul className="nav navbar-nav navbar-right">
@@ -18,7 +18,7 @@ var Main = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <h1>Hello React</h1>
+          <h1>Hello, React!</h1>
         </div>
       </div>
     );

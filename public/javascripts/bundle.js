@@ -20778,7 +20778,8 @@ var Main = React.createClass({
             React.createElement(
               'a',
               { href: '/', className: 'navbar-brand' },
-              'Pomodoro'
+              React.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+              ' Pomodoro'
             ),
             React.createElement(
               'p',
@@ -20816,7 +20817,7 @@ var Main = React.createClass({
         React.createElement(
           'h1',
           null,
-          'Hello React'
+          'Hello, React!'
         )
       )
     );
