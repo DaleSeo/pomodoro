@@ -20763,8 +20763,63 @@ var Main = React.createClass({
   displayName: 'Main',
 
   render: function () {
-    // return <div><h1>Hello React</h1></div>;
-    return React.createElement('div', null, 'Hello React');
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'nav',
+        { className: 'navbar navbar-default navbar-static-top' },
+        React.createElement(
+          'div',
+          { className: 'container' },
+          React.createElement(
+            'div',
+            { className: 'navbar-header' },
+            React.createElement(
+              'a',
+              { href: '/', className: 'navbar-brand' },
+              'Pomodoro'
+            ),
+            React.createElement(
+              'p',
+              { className: 'navbar-text' },
+              'Manage your time'
+            )
+          ),
+          React.createElement(
+            'ul',
+            { className: 'nav navbar-nav navbar-right' },
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                'a',
+                { href: '/about.html' },
+                'About'
+              )
+            ),
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                'a',
+                { href: '/myPage.html' },
+                'My Page'
+              )
+            )
+          )
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'container' },
+        React.createElement(
+          'h1',
+          null,
+          'Hello React'
+        )
+      )
+    );
   }
 });
 
