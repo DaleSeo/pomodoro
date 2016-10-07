@@ -20843,6 +20843,10 @@ var React = require('react');
 var Timer = React.createClass({
   displayName: 'Timer',
 
+  handleSubmit: function (event) {
+    event.preventDefault();
+    alert('handleSubmit');
+  },
   render: function () {
     return React.createElement(
       'div',
@@ -20851,6 +20855,34 @@ var Timer = React.createClass({
         'h1',
         null,
         'Timer'
+      ),
+      React.createElement(
+        'form',
+        { onSubmit: '{this.handleSubmit}' },
+        React.createElement(
+          'div',
+          { className: 'form-group' },
+          React.createElement(
+            'label',
+            { 'for': 'minute' },
+            'Enter a minute: '
+          ),
+          React.createElement('input', { type: 'text', name: 'minute', className: 'form-control' })
+        ),
+        React.createElement(
+          'div',
+          { className: 'form-group text-right' },
+          React.createElement(
+            'button',
+            { type: 'reset', className: 'btn btn-default' },
+            'Reset'
+          ),
+          React.createElement(
+            'button',
+            { type: 'submit', className: 'btn btn-primary' },
+            'Start'
+          )
+        )
       )
     );
   }
