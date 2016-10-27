@@ -4,8 +4,9 @@
   "private": true,
   "author": "Dale Seo",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --content-base public --inline --hot",
+    "start": "node ./bin/www",
     "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base public --inline --hot",
     "deploy": "git push"
   },
   "dependencies": {
