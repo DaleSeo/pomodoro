@@ -4,7 +4,9 @@
   "private": true,
   "author": "Dale Seo",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "./node_modules/.bin/webpack-dev-server --content-base public --inline --hot",
+    "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
+    "deploy": "git push"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js"
@@ -27,8 +29,8 @@
     "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "expose": "^0.1.4",
     "express": "~4.13.4",
-    "font-awesome": "^4.6.3",
     "jade": "~1.11.0",
     "jquery": "^3.1.1",
     "morgan": "~1.7.0",
@@ -39,9 +41,15 @@
   "devDependencies": {
     "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
+    "bootstrap-webpack": "0.0.5",
     "browserify": "^13.1.0",
     "browserify-shim": "^3.8.12",
+    "expose-loader": "^0.7.1",
+    "font-awesome": "^4.6.3",
+    "font-awesome-webpack": "0.0.4",
     "gulp": "^3.9.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
     "vinyl-source-stream": "^1.1.0"
   }
 }
