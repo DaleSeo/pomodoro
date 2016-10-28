@@ -11,7 +11,7 @@ var Timer = React.createClass({
         <h1>Timer</h1>
         <form onSubmit="{this.handleSubmit}">
           <div className="form-group">
-            <label for="minute">Enter a minute: </label>
+            <label htmlFor="minute">Enter a minute: </label>
             <input type="text" name="minute" className="form-control"/>
           </div>
           <div className="form-group text-right">
