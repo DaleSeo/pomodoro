@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var Navbar = require('./navbar');
 var Timer = require('./timer');
 
@@ -16,4 +15,4 @@ var Main = React.createClass({
   }
 });
 
-ReactDOM.render(<Main/>, document.getElementById('main'));
+module.exports = Main;
