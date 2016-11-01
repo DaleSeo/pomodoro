@@ -1,20 +1,27 @@
 import React from 'react';
 
+const modes = [
+  { name: 'work', time: 5 },
+  { name: 'break', time: 2 }
+];
+
 class Timer extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {time: 1500};
+    this.state = {
+      mode: modes[0],
+      remaining: modes[0].time
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handlePlay = this.handlePlay.bind(this);
-    this.handlePause = this.handlePause.bind(this);
-    this.handleStop = this.handleStop.bind(this);
+    this.handlePlay = this.play.bind(this);
+    this.handlePause = this.pause.bind(this);
+    this.handleStop = this.stop.bind(this);
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => this.setState(prevState => ({time: prevState.time - 1})), 1000);
   }
 
   componentWillUnmount() {
@@ -26,24 +33,34 @@ class Timer extends React.Component {
     alert('handleSubmit');
   }
 
-  handlePlay(event) {
-    console.log('handlePlay');
-    this.timer = setInterval(() => this.setState(prevState => ({time: prevState.time - 1})), 1000);
+  play() {
+    console.log('play');
+    this.timer = setInterval(() => {
+      if (this.state.remaining == 0) {
+        this.pause();
+        this.setState(prevState => ({
+          mode: prevState.state == modes[0] ? modes[1] : modes[0]
+        }));
+        this.setState({remaining: this.state.mode.time});
+      } else {
+        this.setState(prevState => ({remaining: prevState.remaining - 1}))
+      }
+    }, 1000);
   }
 
-  handlePause(event) {
-    console.log('handlePause');
+  pause() {
+    console.log('pause');
     clearInterval(this.timer);
   }
 
-  handleStop(event) {
-    console.log('handleStop');
+  stop() {
+    console.log('handle');
     clearInterval(this.timer);
-    this.setState({time: 1500});
+    this.setState({remaining: this.state.mode.time});
   }
 
   timeFormat() {
-    const time = this.state.time;
+    const time = this.state.remaining;
     let min = Math.floor(time / 60);
     let sec = time % 60;
     return this.zeroFill(min) + ":" + this.zeroFill(sec);

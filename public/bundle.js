@@ -21626,6 +21626,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var modes = [{ name: 'work', time: 1500 }, { name: 'break', time: 300 }];
+
 	var Timer = function (_React$Component) {
 	  _inherits(Timer, _React$Component);
 
@@ -21634,25 +21636,22 @@
 
 	    var _this = _possibleConstructorReturn(this, (Timer.__proto__ || Object.getPrototypeOf(Timer)).call(this, props));
 
-	    _this.state = { time: 1500 };
+	    _this.state = {
+	      mode: modes[0],
+	      remaining: _this.state.mode.time
+	    };
 
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
-	    _this.handlePlay = _this.handlePlay.bind(_this);
-	    _this.handlePause = _this.handlePause.bind(_this);
-	    _this.handleStop = _this.handleStop.bind(_this);
+	    _this.handlePlay = _this.play.bind(_this);
+	    _this.handlePause = _this.pause.bind(_this);
+	    _this.handleStop = _this.stop.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Timer, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
-	      this.timer = setInterval(function () {
-	        return _this2.setState(function (prevState) {
-	          return { time: prevState.time - 1 };
-	        });
-	      }, 1000);
+	      this.play();
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -21666,34 +21665,34 @@
 	      alert('handleSubmit');
 	    }
 	  }, {
-	    key: 'handlePlay',
-	    value: function handlePlay(event) {
-	      var _this3 = this;
+	    key: 'play',
+	    value: function play() {
+	      var _this2 = this;
 
-	      console.log('handlePlay');
+	      console.log('play');
 	      this.timer = setInterval(function () {
-	        return _this3.setState(function (prevState) {
-	          return { time: prevState.time - 1 };
+	        return _this2.setState(function (prevState) {
+	          return { remaining: prevState.remaining - 1 };
 	        });
 	      }, 1000);
 	    }
 	  }, {
-	    key: 'handlePause',
-	    value: function handlePause(event) {
-	      console.log('handlePause');
+	    key: 'pause',
+	    value: function pause() {
+	      console.log('pause');
 	      clearInterval(this.timer);
 	    }
 	  }, {
-	    key: 'handleStop',
-	    value: function handleStop(event) {
-	      console.log('handleStop');
+	    key: 'stop',
+	    value: function stop() {
+	      console.log('handle');
 	      clearInterval(this.timer);
-	      this.setState({ time: 1500 });
+	      this.setState({ remaining: this.state.mode.time });
 	    }
 	  }, {
 	    key: 'timeFormat',
 	    value: function timeFormat() {
-	      var time = this.state.time;
+	      var time = this.state.remaining;
 	      var min = Math.floor(time / 60);
 	      var sec = time % 60;
 	      return this.zeroFill(min) + ":" + this.zeroFill(sec);
