@@ -1,8 +1,8 @@
 import React from 'react';
 
 const modes = [
-  { name: 'work', time: 5 },
-  { name: 'break', time: 2 }
+  { name: 'work', time: 25 * 60},
+  { name: 'break', time: 5 * 60}
 ];
 
 class Timer extends React.Component {
@@ -15,7 +15,6 @@ class Timer extends React.Component {
       remaining: modes[0].time
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePlay = this.play.bind(this);
     this.handlePause = this.pause.bind(this);
     this.handleStop = this.stop.bind(this);
@@ -28,24 +27,23 @@ class Timer extends React.Component {
     clearInterval(this.timer);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    alert('handleSubmit');
-  }
-
   play() {
     console.log('play');
     this.timer = setInterval(() => {
       if (this.state.remaining == 0) {
         this.pause();
-        this.setState(prevState => ({
-          mode: prevState.state == modes[0] ? modes[1] : modes[0]
-        }));
-        this.setState({remaining: this.state.mode.time});
+        this.toggleMode();
       } else {
         this.setState(prevState => ({remaining: prevState.remaining - 1}))
       }
     }, 1000);
+  }
+
+  toggleMode() {
+    this.setState(prevState => ({
+      mode: prevState.mode == modes[0] ? modes[1] : modes[0]
+    }));
+    this.setState({remaining: this.state.mode.time});
   }
 
   pause() {
