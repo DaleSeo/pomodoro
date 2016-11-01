@@ -21626,7 +21626,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var modes = [{ name: 'work', time: 5 }, { name: 'break', time: 2 }];
+	var modes = [{ name: 'work', time: 5 }, { name: 'break', time: 1 }];
 	
 	var Timer = function (_React$Component) {
 	  _inherits(Timer, _React$Component);
@@ -21641,7 +21641,6 @@
 	      remaining: modes[0].time
 	    };
 	
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.handlePlay = _this.play.bind(_this);
 	    _this.handlePause = _this.pause.bind(_this);
 	    _this.handleStop = _this.stop.bind(_this);
@@ -21650,17 +21649,13 @@
 	
 	  _createClass(Timer, [{
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {}
+	    value: function componentDidMount() {
+	      Notification.requestPermission();
+	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
 	      clearInterval(this.timer);
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(event) {
-	      event.preventDefault();
-	      alert('handleSubmit');
 	    }
 	  }, {
 	    key: 'play',
@@ -21671,18 +21666,24 @@
 	      this.timer = setInterval(function () {
 	        if (_this2.state.remaining == 0) {
 	          _this2.pause();
-	          _this2.setState(function (prevState) {
-	            return {
-	              mode: prevState.state == modes[0] ? modes[1] : modes[0]
-	            };
-	          });
-	          _this2.setState({ remaining: _this2.state.mode.time });
+	          new Notification("It's time to toggle!");
+	          _this2.toggleMode();
 	        } else {
 	          _this2.setState(function (prevState) {
 	            return { remaining: prevState.remaining - 1 };
 	          });
 	        }
 	      }, 1000);
+	    }
+	  }, {
+	    key: 'toggleMode',
+	    value: function toggleMode() {
+	      this.setState(function (prevState) {
+	        return {
+	          mode: prevState.mode == modes[0] ? modes[1] : modes[0]
+	        };
+	      });
+	      this.setState({ remaining: this.state.mode.time });
 	    }
 	  }, {
 	    key: 'pause',
@@ -21750,34 +21751,6 @@
 	              'button',
 	              { type: 'button', className: 'btn btn-default', onClick: this.handleStop },
 	              _react2.default.createElement('i', { className: 'fa fa-stop', 'aria-hidden': 'true' })
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          null,
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'form-group' },
-	            _react2.default.createElement(
-	              'label',
-	              { htmlFor: 'minute' },
-	              'Enter a minute: '
-	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'minute', className: 'form-control' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'form-group text-right' },
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'reset', className: 'btn btn-default' },
-	              'Reset'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit', className: 'btn btn-primary' },
-	              'Start'
 	            )
 	          )
 	        )

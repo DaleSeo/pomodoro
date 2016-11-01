@@ -1,8 +1,8 @@
 import React from 'react';
 
 const modes = [
-  { name: 'work', time: 25 * 60},
-  { name: 'break', time: 5 * 60}
+  { name: 'work', time: 5},
+  { name: 'break', time: 1}
 ];
 
 class Timer extends React.Component {
@@ -21,6 +21,7 @@ class Timer extends React.Component {
   }
 
   componentDidMount() {
+    Notification.requestPermission();
   }
 
   componentWillUnmount() {
@@ -32,6 +33,7 @@ class Timer extends React.Component {
     this.timer = setInterval(() => {
       if (this.state.remaining == 0) {
         this.pause();
+        new Notification("It's time to toggle!");
         this.toggleMode();
       } else {
         this.setState(prevState => ({remaining: prevState.remaining - 1}))
@@ -82,16 +84,6 @@ class Timer extends React.Component {
             <button type="button" className="btn btn-default" onClick={this.handleStop}><i className="fa fa-stop" aria-hidden="true"></i></button>
           </div>
         </div>
-        <form>
-          <div className="form-group">
-            <label htmlFor="minute">Enter a minute: </label>
-            <input type="text" name="minute" className="form-control"/>
-          </div>
-          <div className="form-group text-right">
-            <button type="reset" className="btn btn-default">Reset</button>
-            <button type="submit" className="btn btn-primary">Start</button>
-          </div>
-        </form>
       </div>
     );
   }

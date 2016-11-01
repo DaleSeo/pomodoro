@@ -21,4 +21,6 @@ $ npm run build
     - Alarm goes off.
 
 ## To Do
-- Notification
+- Remaining modification
+- Work, Break color highlight
+- Normal Clock
