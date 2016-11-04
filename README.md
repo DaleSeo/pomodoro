@@ -16,9 +16,6 @@ $ npm run build
 
 
 ## Requirements
-- Timer
-    - Enter the duration.
-    - Alarm goes off.
 
 ## To Do
 - Remaining modification

@@ -21644,10 +21644,6 @@
 	      mode: modes[0],
 	      remaining: modes[0].time
 	    };
-	
-	    _this.handlePlay = _this.play.bind(_this);
-	    _this.handlePause = _this.pause.bind(_this);
-	    _this.handleStop = _this.stop.bind(_this);
 	    return _this;
 	  }
 	
@@ -21703,6 +21699,13 @@
 	      this.setState({ remaining: this.state.mode.time });
 	    }
 	  }, {
+	    key: 'update',
+	    value: function update() {
+	      console.log('update');
+	      var remaining = window.prompt("Enter the time", _config2.default.WORK_DURATION.toString());
+	      this.setState({ remaining: remaining * 60 });
+	    }
+	  }, {
 	    key: 'timeFormat',
 	    value: function timeFormat() {
 	      var time = this.state.remaining;
@@ -21743,18 +21746,23 @@
 	            { className: 'btn-group', role: 'group' },
 	            _react2.default.createElement(
 	              'button',
-	              { type: 'button', className: 'btn btn-default', onClick: this.handlePlay },
+	              { type: 'button', className: 'btn btn-default', onClick: this.play.bind(this) },
 	              _react2.default.createElement('i', { className: 'fa fa-play', 'aria-hidden': 'true' })
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { type: 'button', className: 'btn btn-default', onClick: this.handlePause },
+	              { type: 'button', className: 'btn btn-default', onClick: this.pause.bind(this) },
 	              _react2.default.createElement('i', { className: 'fa fa-pause', 'aria-hidden': 'true' })
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { type: 'button', className: 'btn btn-default', onClick: this.handleStop },
+	              { type: 'button', className: 'btn btn-default', onClick: this.stop.bind(this) },
 	              _react2.default.createElement('i', { className: 'fa fa-stop', 'aria-hidden': 'true' })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default', onClick: this.update.bind(this) },
+	              _react2.default.createElement('i', { className: 'fa fa-pencil', 'aria-hidden': 'true' })
 	            )
 	          )
 	        )

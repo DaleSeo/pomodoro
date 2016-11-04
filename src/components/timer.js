@@ -15,10 +15,6 @@ class Timer extends React.Component {
       mode: modes[0],
       remaining: modes[0].time
     };
-
-    this.handlePlay = this.play.bind(this);
-    this.handlePause = this.pause.bind(this);
-    this.handleStop = this.stop.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +56,12 @@ class Timer extends React.Component {
     this.setState({remaining: this.state.mode.time});
   }
 
+  update() {
+    console.log('update');
+    var remaining = window.prompt("Enter the time", CONFIG.WORK_DURATION.toString());
+    this.setState({remaining: remaining * 60});
+  }
+
   timeFormat() {
     const time = this.state.remaining;
     let min = Math.floor(time / 60);
@@ -80,9 +82,10 @@ class Timer extends React.Component {
         </div>
         <div className="text-center">
           <div className="btn-group" role="group">
-            <button type="button" className="btn btn-default" onClick={this.handlePlay}><i className="fa fa-play" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.handlePause}><i className="fa fa-pause" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.handleStop}><i className="fa fa-stop" aria-hidden="true"></i></button>
+            <button type="button" className="btn btn-default" onClick={this.play.bind(this)}><i className="fa fa-play" aria-hidden="true"></i></button>
+            <button type="button" className="btn btn-default" onClick={this.pause.bind(this)}><i className="fa fa-pause" aria-hidden="true"></i></button>
+            <button type="button" className="btn btn-default" onClick={this.stop.bind(this)}><i className="fa fa-stop" aria-hidden="true"></i></button>
+            <button type="button" className="btn btn-default" onClick={this.update.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
