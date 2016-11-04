@@ -3,4 +3,4 @@ const CONFIG = {
   BREAK_DURATION: 5,
 };
 
-module.exports = CONFIG;
+export default CONFIG;
