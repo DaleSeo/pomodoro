@@ -21630,7 +21630,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var modes = [{ name: 'work', time: _config2.default.WORK_DURATION }, { name: 'break', time: _config2.default.BREAK_DURATION }];
+	var modes = [{ name: 'work', time: _config2.default.WORK_DURATION * 60 }, { name: 'break', time: _config2.default.BREAK_DURATION * 60 }];
 	
 	var Timer = function (_React$Component) {
 	  _inherits(Timer, _React$Component);
