@@ -1,6 +1,7 @@
-var React = require('react');
-var Navbar = require('./navbar');
-var Timer = require('./timer');
+import React from 'react';
+import Navbar from './navbar';
+import Timer from './timer';
+import Clock from './clock';
 
 var Main = React.createClass({
   render: function () {
@@ -8,6 +9,7 @@ var Main = React.createClass({
       <div>
         <Navbar/>
         <div className="container">
+          <Clock/>
           <Timer/>
         </div>
       </div>
@@ -15,4 +17,4 @@ var Main = React.createClass({
   }
 });
 
-module.exports = Main;
+export default Main;

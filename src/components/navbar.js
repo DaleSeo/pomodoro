@@ -19,4 +19,4 @@ var Navbar = React.createClass({
   }
 });
 
-module.exports = Navbar;
+export default Navbar;
