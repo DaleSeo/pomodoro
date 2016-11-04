@@ -1,8 +1,9 @@
 import React from 'react';
+import CONFIG from '../config';
 
 const modes = [
-  { name: 'work', time: 5},
-  { name: 'break', time: 1}
+  { name: 'work', time: CONFIG.WORK_DURATION * 60},
+  { name: 'break', time: CONFIG.BREAK_DURATION * 60}
 ];
 
 class Timer extends React.Component {
