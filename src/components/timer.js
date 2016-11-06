@@ -47,12 +47,16 @@ class Timer extends React.Component {
 
   pause() {
     console.log('pause');
-    clearInterval(this.timer);
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 
   stop() {
     console.log('handle');
-    clearInterval(this.timer);
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
     this.setState({remaining: this.state.mode.time});
   }
 
@@ -60,6 +64,14 @@ class Timer extends React.Component {
     console.log('update');
     var remaining = window.prompt("Enter the time", CONFIG.WORK_DURATION.toString());
     this.setState({remaining: remaining * 60});
+  }
+
+  getClassName() {
+    if (this.state.mode === modes[0]) {
+      return 'alert alert-success';
+    } else {
+      return 'alert alert-warning';
+    }
   }
 
   timeFormat() {
@@ -77,7 +89,7 @@ class Timer extends React.Component {
     return (
       <div>
         <h1>Timer</h1>
-        <div className="alert alert-success" role="alert">
+        <div className={this.getClassName()} role="alert">
           <h2 className="text-center">{this.timeFormat()}</h2>
         </div>
         <div className="text-center">

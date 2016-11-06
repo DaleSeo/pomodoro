@@ -21732,6 +21732,15 @@
 	      this.setState({ remaining: remaining * 60 });
 	    }
 	  }, {
+	    key: 'getClassName',
+	    value: function getClassName() {
+	      if (this.state.mode === modes[0]) {
+	        return 'alert alert-success';
+	      } else {
+	        return 'alert alert-warning';
+	      }
+	    }
+	  }, {
 	    key: 'timeFormat',
 	    value: function timeFormat() {
 	      var time = this.state.remaining;
@@ -21757,7 +21766,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'alert alert-success', role: 'alert' },
+	          { className: this.getClassName(), role: 'alert' },
 	          _react2.default.createElement(
 	            'h2',
 	            { className: 'text-center' },
