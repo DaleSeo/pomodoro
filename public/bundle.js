@@ -21884,7 +21884,7 @@
 	          _react2.default.createElement(
 	            "h2",
 	            { className: "text-center" },
-	            this.state.time.toTimeString().substring(0, 8)
+	            this.state.time.toTimeString().substring(0, 5)
 	          )
 	        )
 	      );
