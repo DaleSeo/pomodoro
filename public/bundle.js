@@ -21715,13 +21715,17 @@
 	    key: 'pause',
 	    value: function pause() {
 	      console.log('pause');
-	      clearInterval(this.timer);
+	      if (this.timer) {
+	        clearInterval(this.timer);
+	      }
 	    }
 	  }, {
 	    key: 'stop',
 	    value: function stop() {
 	      console.log('handle');
-	      clearInterval(this.timer);
+	      if (this.timer) {
+	        clearInterval(this.timer);
+	      }
 	      this.setState({ remaining: this.state.mode.time });
 	    }
 	  }, {
