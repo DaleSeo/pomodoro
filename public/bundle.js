@@ -21668,6 +21668,7 @@
 	
 	    _this.state = {
 	      mode: modes[0],
+	      playing: false,
 	      remaining: modes[0].time
 	    };
 	    return _this;
@@ -21676,30 +21677,41 @@
 	  _createClass(Timer, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      this.play.bind(this);
 	      Notification.requestPermission();
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      clearInterval(this.timer);
+	      this.pause.bind(this);
 	    }
 	  }, {
 	    key: 'play',
 	    value: function play() {
-	      var _this2 = this;
-	
-	      console.log('play');
-	      this.timer = setInterval(function () {
-	        if (_this2.state.remaining == 0) {
-	          _this2.pause();
-	          new Notification("It's time to toggle!");
-	          _this2.toggleMode();
-	        } else {
-	          _this2.setState(function (prevState) {
-	            return { remaining: prevState.remaining - 1 };
-	          });
-	        }
-	      }, 1000);
+	      if (this.state.playing) {
+	        return;
+	      }
+	      this.setState({ playing: true });
+	      this.timer = setInterval(this.tick.bind(this), 1000);
+	    }
+	  }, {
+	    key: 'tick',
+	    value: function tick() {
+	      if (this.state.remaining == 0) {
+	        this.pause();
+	        this.notify();
+	        this.toggleMode();
+	      } else {
+	        this.setState(function (prevState) {
+	          return { remaining: prevState.remaining - 1 };
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'notify',
+	    value: function notify() {
+	      // TODO: Show different messages according to the previous state.
+	      new Notification("It's time to toggle!");
 	    }
 	  }, {
 	    key: 'toggleMode',
@@ -21715,18 +21727,25 @@
 	    key: 'pause',
 	    value: function pause() {
 	      console.log('pause');
+	      if (!this.state.playing) {
+	        return;
+	      }
+	      this.setState({ playing: false });
 	      if (this.timer) {
 	        clearInterval(this.timer);
 	      }
 	    }
 	  }, {
-	    key: 'stop',
-	    value: function stop() {
-	      console.log('handle');
-	      if (this.timer) {
-	        clearInterval(this.timer);
-	      }
+	    key: 'backward',
+	    value: function backward() {
+	      console.log('backward');
 	      this.setState({ remaining: this.state.mode.time });
+	    }
+	  }, {
+	    key: 'forward',
+	    value: function forward() {
+	      console.log('forward');
+	      this.setState({ remaining: 0 });
 	    }
 	  }, {
 	    key: 'update',
@@ -21738,6 +21757,9 @@
 	  }, {
 	    key: 'getClassName',
 	    value: function getClassName() {
+	      if (!this.state.playing) {
+	        return 'alert alert-danger';
+	      }
 	      if (this.state.mode === modes[0]) {
 	        return 'alert alert-success';
 	      } else {
@@ -21795,8 +21817,13 @@
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { type: 'button', className: 'btn btn-default', onClick: this.stop.bind(this) },
-	              _react2.default.createElement('i', { className: 'fa fa-stop', 'aria-hidden': 'true' })
+	              { type: 'button', className: 'btn btn-default', onClick: this.backward.bind(this) },
+	              _react2.default.createElement('i', { className: 'fa fa-step-backward', 'aria-hidden': 'true' })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default', onClick: this.forward.bind(this) },
+	              _react2.default.createElement('i', { className: 'fa fa-step-forward', 'aria-hidden': 'true' })
 	            ),
 	            _react2.default.createElement(
 	              'button',

@@ -13,29 +13,41 @@ class Timer extends React.Component {
 
     this.state = {
       mode: modes[0],
+      playing: false,
       remaining: modes[0].time
     };
   }
 
   componentDidMount() {
+    this.play.bind(this);
     Notification.requestPermission();
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    this.pause.bind(this);
   }
 
   play() {
-    console.log('play');
-    this.timer = setInterval(() => {
-      if (this.state.remaining == 0) {
-        this.pause();
-        new Notification("It's time to toggle!");
-        this.toggleMode();
-      } else {
-        this.setState(prevState => ({remaining: prevState.remaining - 1}))
-      }
-    }, 1000);
+    if (this.state.playing) {
+      return;
+    }
+    this.setState({ playing: true });
+    this.timer = setInterval(this.tick.bind(this), 1000);
+  }
+
+  tick() {
+    if (this.state.remaining == 0) {
+      this.pause();
+      this.notify();
+      this.toggleMode();
+    } else {
+      this.setState(prevState => ({remaining: prevState.remaining - 1}));
+    }
+  }
+
+  notify() {
+    // TODO: Show different messages according to the previous state.
+    new Notification("It's time to toggle!");
   }
 
   toggleMode() {
@@ -47,17 +59,23 @@ class Timer extends React.Component {
 
   pause() {
     console.log('pause');
+    if (!this.state.playing) {
+      return;
+    }
+    this.setState({ playing: false });
     if (this.timer) {
       clearInterval(this.timer);
     }
   }
 
-  stop() {
-    console.log('handle');
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+  backward() {
+    console.log('backward');
     this.setState({remaining: this.state.mode.time});
+  }
+
+  forward() {
+    console.log('forward');
+    this.setState({remaining: 0});
   }
 
   update() {
@@ -67,6 +85,9 @@ class Timer extends React.Component {
   }
 
   getClassName() {
+    if (!this.state.playing) {
+      return 'alert alert-danger';
+    }
     if (this.state.mode === modes[0]) {
       return 'alert alert-success';
     } else {
@@ -96,7 +117,8 @@ class Timer extends React.Component {
           <div className="btn-group" role="group">
             <button type="button" className="btn btn-default" onClick={this.play.bind(this)}><i className="fa fa-play" aria-hidden="true"></i></button>
             <button type="button" className="btn btn-default" onClick={this.pause.bind(this)}><i className="fa fa-pause" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.stop.bind(this)}><i className="fa fa-stop" aria-hidden="true"></i></button>
+            <button type="button" className="btn btn-default" onClick={this.backward.bind(this)}><i className="fa fa-step-backward" aria-hidden="true"></i></button>
+            <button type="button" className="btn btn-default" onClick={this.forward.bind(this)}><i className="fa fa-step-forward" aria-hidden="true"></i></button>
             <button type="button" className="btn btn-default" onClick={this.update.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></button>
           </div>
         </div>
