@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/DaleSeo/pomodoro.svg?branch=master)](https://travis-ci.org/DaleSeo/pomodoro)
 # Pomodoro
 
 ## Run
