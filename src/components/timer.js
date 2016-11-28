@@ -110,16 +110,16 @@ class Timer extends React.Component {
     return (
       <div>
         <h1>Timer</h1>
-        <div className={this.getClassName()} role="alert">
-          <h2 className="text-center">{this.timeFormat()}</h2>
+        <div class={this.getClassName()} role="alert">
+          <h2 class="text-center">{this.timeFormat()}</h2>
         </div>
-        <div className="text-center">
-          <div className="btn-group" role="group">
-            <button type="button" className="btn btn-default" onClick={this.play.bind(this)}><i className="fa fa-play" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.pause.bind(this)}><i className="fa fa-pause" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.backward.bind(this)}><i className="fa fa-step-backward" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.forward.bind(this)}><i className="fa fa-step-forward" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.update.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></button>
+        <div class="text-center">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" onClick={this.play.bind(this)}><i class="fa fa-play" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.pause.bind(this)}><i class="fa fa-pause" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.backward.bind(this)}><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.forward.bind(this)}><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.update.bind(this)}><i class="fa fa-pencil" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>

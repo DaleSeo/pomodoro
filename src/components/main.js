@@ -8,7 +8,7 @@ var Main = React.createClass({
     return (
       <div>
         <Navbar/>
-        <div className="container">
+        <div class="container">
           <Clock/>
           <Timer/>
         </div>

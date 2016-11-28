@@ -19,8 +19,8 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Clock</h1>
-        <div className="alert alert-info" role="alert">
-          <h2 className="text-center">{this.state.time.toTimeString().substring(0, 5)}</h2>
+        <div class="alert alert-info" role="alert">
+          <h2 class="text-center">{this.state.time.toTimeString().substring(0, 5)}</h2>
         </div>
       </div>
     );
