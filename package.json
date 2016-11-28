@@ -5,8 +5,8 @@
   "author": "Dale Seo",
   "scripts": {
     "start": "node ./bin/www",
-    "build": "./node_modules/.bin/webpack",
-    "server": "./node_modules/.bin/webpack-dev-server --content-base public"
+    "build": "webpack",
+    "dev": "webpack-dev-server --content-base docs"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
