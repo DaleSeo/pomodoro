@@ -86,12 +86,12 @@ class Timer extends React.Component {
 
   getClassName() {
     if (!this.state.playing) {
-      return 'alert alert-danger';
+      return 'panel panel-danger';
     }
     if (this.state.mode === modes[0]) {
-      return 'alert alert-success';
+      return 'panel panel-success';
     } else {
-      return 'alert alert-warning';
+      return 'panel panel-warning';
     }
   }
 
@@ -109,9 +109,13 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <h1>Timer</h1>
-        <div class={this.getClassName()} role="alert">
-          <h2 class="text-center">{this.timeFormat()}</h2>
+        <div class={this.getClassName()}>
+          <div class="panel-heading">
+            <h3 class="panel-title">Timer</h3>
+          </div>
+          <div class="panel-body ">
+            <h4 class="text-center">{this.timeFormat()}</h4>
+          </div>
         </div>
         <div class="text-center">
           <div class="btn-group" role="group">

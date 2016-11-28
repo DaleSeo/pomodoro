@@ -21525,6 +21525,8 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(83);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -21543,23 +21545,52 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Main = _react2.default.createClass({
-	  displayName: 'Main',
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(_navbar2.default, null),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement(_clock2.default, null),
-	        _react2.default.createElement(_timer2.default, null)
-	      )
-	    );
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Main = function (_React$Component) {
+	  _inherits(Main, _React$Component);
+	
+	  function Main() {
+	    _classCallCheck(this, Main);
+	
+	    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
 	  }
-	});
+	
+	  _createClass(Main, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_navbar2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-6' },
+	              _react2.default.createElement(_clock2.default, null)
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-6' },
+	              _react2.default.createElement(_timer2.default, null)
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Main;
+	}(_react2.default.Component);
 	
 	exports.default = Main;
 
@@ -21758,12 +21789,12 @@
 	    key: 'getClassName',
 	    value: function getClassName() {
 	      if (!this.state.playing) {
-	        return 'alert alert-danger';
+	        return 'panel panel-danger';
 	      }
 	      if (this.state.mode === modes[0]) {
-	        return 'alert alert-success';
+	        return 'panel panel-success';
 	      } else {
-	        return 'alert alert-warning';
+	        return 'panel panel-warning';
 	      }
 	    }
 	  }, {
@@ -21786,17 +21817,25 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Timer'
-	        ),
-	        _react2.default.createElement(
 	          'div',
-	          { className: this.getClassName(), role: 'alert' },
+	          { className: this.getClassName() },
 	          _react2.default.createElement(
-	            'h2',
-	            { className: 'text-center' },
-	            this.timeFormat()
+	            'div',
+	            { className: 'panel-heading' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'panel-title' },
+	              'Timer'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-body ' },
+	            _react2.default.createElement(
+	              'h4',
+	              { className: 'text-center' },
+	              this.timeFormat()
+	            )
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -21912,19 +21951,23 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        null,
+	        { className: "panel panel-default" },
 	        _react2.default.createElement(
-	          "h1",
-	          null,
-	          "Clock"
+	          "div",
+	          { className: "panel-heading" },
+	          _react2.default.createElement(
+	            "h3",
+	            { className: "panel-title" },
+	            "Clock"
+	          )
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "alert alert-info", role: "alert" },
+	          { className: "panel-body" },
 	          _react2.default.createElement(
-	            "h2",
+	            "h4",
 	            { className: "text-center" },
-	            this.state.time.toTimeString().substring(0, 5)
+	            this.state.time.toTimeString()
 	          )
 	        )
 	      );
