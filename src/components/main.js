@@ -3,18 +3,24 @@ import Navbar from './navbar';
 import Timer from './timer';
 import Clock from './clock';
 
-var Main = React.createClass({
-  render: function () {
+class Main extends React.Component {
+  render() {
     return (
       <div>
         <Navbar/>
-        <div className="container">
-          <Clock/>
-          <Timer/>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-6">
+              <Clock/>
+            </div>
+            <div class="col-xs-6">
+              <Timer/>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
-});
+}
 
 export default Main;

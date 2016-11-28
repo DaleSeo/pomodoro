@@ -17,10 +17,12 @@ class Clock extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Clock</h1>
-        <div className="alert alert-info" role="alert">
-          <h2 className="text-center">{this.state.time.toTimeString().substring(0, 5)}</h2>
+       <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Clock</h3>
+        </div>
+        <div class="panel-body">
+          <h4 class="text-center">{this.state.time.toTimeString()}</h4>
         </div>
       </div>
     );

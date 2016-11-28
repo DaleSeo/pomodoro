@@ -86,12 +86,12 @@ class Timer extends React.Component {
 
   getClassName() {
     if (!this.state.playing) {
-      return 'alert alert-danger';
+      return 'panel panel-danger';
     }
     if (this.state.mode === modes[0]) {
-      return 'alert alert-success';
+      return 'panel panel-success';
     } else {
-      return 'alert alert-warning';
+      return 'panel panel-warning';
     }
   }
 
@@ -109,17 +109,21 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <h1>Timer</h1>
-        <div className={this.getClassName()} role="alert">
-          <h2 className="text-center">{this.timeFormat()}</h2>
+        <div class={this.getClassName()}>
+          <div class="panel-heading">
+            <h3 class="panel-title">Timer</h3>
+          </div>
+          <div class="panel-body ">
+            <h4 class="text-center">{this.timeFormat()}</h4>
+          </div>
         </div>
-        <div className="text-center">
-          <div className="btn-group" role="group">
-            <button type="button" className="btn btn-default" onClick={this.play.bind(this)}><i className="fa fa-play" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.pause.bind(this)}><i className="fa fa-pause" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.backward.bind(this)}><i className="fa fa-step-backward" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.forward.bind(this)}><i className="fa fa-step-forward" aria-hidden="true"></i></button>
-            <button type="button" className="btn btn-default" onClick={this.update.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></button>
+        <div class="text-center">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" onClick={this.play.bind(this)}><i class="fa fa-play" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.pause.bind(this)}><i class="fa fa-pause" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.backward.bind(this)}><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.forward.bind(this)}><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default" onClick={this.update.bind(this)}><i class="fa fa-pencil" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
