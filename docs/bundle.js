@@ -21729,7 +21729,6 @@
 	    key: 'tick',
 	    value: function tick() {
 	      if (this.state.remaining == 0) {
-	        this.pause();
 	        this.notify();
 	        this.toggleMode();
 	      } else {

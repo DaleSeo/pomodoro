@@ -37,7 +37,6 @@ class Timer extends React.Component {
 
   tick() {
     if (this.state.remaining == 0) {
-      this.pause();
       this.notify();
       this.toggleMode();
     } else {
