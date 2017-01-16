@@ -21729,8 +21729,8 @@
 	    key: 'tick',
 	    value: function tick() {
 	      if (this.state.remaining == 0) {
-	        this.notify();
 	        this.toggleMode();
+	        this.notify();
 	      } else {
 	        this.setState(function (prevState) {
 	          return { remaining: prevState.remaining - 1 };
@@ -21741,7 +21741,11 @@
 	    key: 'notify',
 	    value: function notify() {
 	      // TODO: Show different messages according to the previous state.
-	      new Notification("It's time to toggle!");
+	      if (this.state.mode == modes[0]) {
+	        new Notification("It's time to work!");
+	      } else {
+	        new Notification("It's time to break!");
+	      }
 	    }
 	  }, {
 	    key: 'toggleMode',
