@@ -37,8 +37,8 @@ class Timer extends React.Component {
 
   tick() {
     if (this.state.remaining == 0) {
-      this.notify();
       this.toggleMode();
+      this.notify();
     } else {
       this.setState(prevState => ({remaining: prevState.remaining - 1}));
     }
@@ -46,7 +46,11 @@ class Timer extends React.Component {
 
   notify() {
     // TODO: Show different messages according to the previous state.
-    new Notification("It's time to toggle!");
+    if (this.state.mode == modes[0]) {
+      new Notification("It's time to work!");
+    } else {
+      new Notification("It's time to break!");
+    }
   }
 
   toggleMode() {
